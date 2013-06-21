@@ -28,7 +28,7 @@ class hp_4145B:
         ## 2 = Current Mode
         ## last value = 1 ---> VAR1 is active
         self.analyzer.write("DE CH2 ,'VX','IX',2,1")
-        self.analyzer.write("DE VM1 ,'VS'")
+        self.analyzer.write("DE VM1 ,'VM'")
  
         ## Turn off other channels 
         self.analyzer.write("DE CH1")
@@ -47,10 +47,11 @@ class hp_4145B:
         CMD = "SS IR1,%s,%s,%s,%s"%(str(start), str(stop), str(step),str(compliance))
         self.analyzer.write(CMD)
 
-        ## Pack the independent parameter into a list and return it
-        current = list(np.linspace(start, stop, int((stop-start)/(step)), endpoint=False))
-        current.append(stop)
-        return current
+        ## Set up the list display. Note that if something is not in
+        ## the list we will not be able to request the data.
+        self.analyzer.write("SM")
+        self.analyzer.write("DM2")
+        self.analyzer.write("LI 'VX','VM'")
 
     def measureData(self):
         ## Issue command to [M]easure [D]ata
@@ -60,12 +61,23 @@ class hp_4145B:
         ## data. If there is no sleep, Python will issue the ask commend
         ## before the measurement has been complete
         time.sleep(1)
+        
+        ## Print out the raw data string for inspection 
+        print self.analyzer.ask("DO 'VX'")
+        print self.analyzer.ask("DO 'VM'")
+        
         ## Request data and transform it in to a list by splitting 
         ## on regular expression. Note that the slice operation is 
         ## needed because the first item in the list after re.split
         ## is the empty string.
-        data = re.split(',*[NT]\s*', self.analyzer.ask("DO 'VS'"))[1:] 
-        return [float(i) for i in data]
+        data0 = re.split(',*[NT]\s*', self.analyzer.ask("DO 'VX'"))[1:] 
+        data1 = re.split(',*[NT]\s*', self.analyzer.ask("DO 'IX'"))[1:] 
+       
+        ## Cast as floats
+        data0 = [float(i) for i in data0]
+        data1 = [float(i) for i in data1]
+
+        return [data0,data1]
 
 if __name__ == "__main__": 
 
@@ -73,11 +85,25 @@ if __name__ == "__main__":
     GPIB = 1
     pa = hp_4145B(GPIB)
     pa.channelDefinition()
-    current = pa.sourceSelect(-0.05,0.05,5e-3,7)
-    voltage = pa.measureData()
+    pa.sourceSelect(-0.05,0.05,5e-3,7)
+    [voltage,current] = pa.measureData()
     
     ## Calculate the derivitive with ndfit
     resistance =  ndfit.derivative(voltage,current)
-    print sum(resistance)/len(resistance)
-    plt.plot(voltage, current)
+    cal = sum(resistance)/len(resistance)
+ 
+    fig = plt.figure(1)
+    ax1 = plt.subplot(111)
+    ax1.plot(voltage, current)
+    ax1.set_xlabel("Voltage")
+    ax1.set_ylabel("Current")
+    ax1.set_ylim(-10e-3,10e-3)
+    ax2 = plt.twinx(ax1) 
+    h2 = ax2.plot(voltage, resistance,'r')
+    ax2.set_ylabel("Resistance")
+    ax2.set_ylim(40,60)
+    plt.legend([h2],['R = %sOhm'%str(cal)],loc=2)
+
     plt.show()
+
+   
