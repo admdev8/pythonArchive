@@ -1,0 +1,24 @@
+#!/usr/bin/env python 
+import visa
+import ndfit
+import numpy 
+import OhmicDriver
+import matplotlib.pyplot as plt
+
+## Get the driver
+os.chdir('../drivers')
+cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+if cmd_folder not in sys.path:
+    sys.path.insert(0, cmd_folder)
+
+GPIB = 1
+pa = hp_4145B(GPIB)
+pa.channelDefinition()
+current = pa.sourceSelect(-0.05,0.05,5e-3,7)
+voltage = pa.measureData()
+
+## Calculate the derivitive with ndfit
+resistance =  ndfit.derivative(voltage,current)
+print sum(resistance)/len(resistance)
+plt.plot(voltage, current)
+plt.show()
