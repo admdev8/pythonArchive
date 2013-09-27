@@ -40,7 +40,7 @@ class pulsedIV_2ch_meas(object):
             time.sleep(1)
            
             # Send pulses
-            self.pulse.setVoltagaA(0,2)
+            self.pulse.setVoltageA(0.0,2.0)
             self.pulse.triggerA()
             
             # Buffer sleep
@@ -103,15 +103,22 @@ class pulsedIV_4ch_meas(object):
     
 if __name__ == "__main__": 
 
-    if 1 == 0: 
+    if 1 == 1: 
+        root = "/home/hadit/Desktop/chipA/PulsedIV/test/"
+        path = "test.pkl"
 
-        vList = np.linspace(0,5,11)
+        print "Saving data in:%s"%root+path 
+
+        vList = np.linspace(0,9,31)
         # Specify GPIB addresses. 
         meas = pulsedIV_2ch_meas(6,15,9)
         # Specify pulse length (us) and delay (ms)
         meas.setPulses(1,1)
+        meas.scope.setScale(1,10)
+        meas.scope.setScale(2,0.01)
         # Set number of averages and perform measurement
-        meas.measure(vList, 512)
+        meas.measure(vList,2048)
+
 
         plt.figure(1)
         for key, value in meas.data.iteritems():
@@ -128,9 +135,10 @@ if __name__ == "__main__":
         plt.ylabel("Current (A)")
         plt.show()
 
-        pickle.dump(meas.data,open("../data/test/testdata2ch.pkl", "wb"))
+        pickle.dump(meas.data,open(root+path, "wb"))
 
-    if 1 == 1: 
+     ## FOUR CHANNEL MEASUREMENTS ##
+    if 1 == 0: 
         vList,gList = np.linspace(0,5,26),np.linspace(0,4,9)
         meas = pulsedIV_4ch_meas(6,15,9) 
         meas.setPulses(2,1)
