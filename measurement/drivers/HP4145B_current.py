@@ -1,5 +1,4 @@
 #!/usr/bin/env python 
-
 import math
 import visa
 import re

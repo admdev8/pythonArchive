@@ -29,8 +29,14 @@ squares = ndfit.quotient(size,width)
 GPIB = 1
 pa = hp_4145B(GPIB)
 pa.channelDefinition()
-data = {"voltage":[0]*len(size),"current":[0]*len(size),"resistance":[0]*len(size),"sheet":[0]*len(size),"size":[0]*len(size)}
-ilow, ihigh, istep, compliance = -0.005,0.005,5e-4,7
+data = {
+    "voltage":[0]*len(size),
+    "current":[0]*len(size),
+    "resistance":[0]*len(size),
+    "sheet":[0]*len(size),
+    "size":[0]*len(size)
+}
+ilow, ihigh, istep, compliance = -0.005, 0.005, 5e-4, 7
 
 ## Get the current and measure the voltage
 current = pa.sourceSelect(ilow,ihigh,istep,compliance)

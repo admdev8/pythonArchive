@@ -1,8 +1,5 @@
 #!/usr/bin/env python 
 
-#import libUtils
-#import physics
-
 # For data extraction 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -165,8 +162,6 @@ class pulseLadder(object):
         #plt.legend([h1,h2], [r'IV data',r'$I_0 [1 + \lambda V] \tanh(\beta V)$'],loc=2, scatterpoints = 1, numpoints = 1)
         plt.show()
 
-        
-
 # This is simply a list of pulse ladder objects
 # All it can do is store the IV curves in a dict 
 # and plot them if needed. It does not do much
@@ -217,11 +212,6 @@ if __name__ == "__main__":
     _file = "../data/test/testdata4ch_4.pkl"
     _300K = pulseLadder.datFromFile(_file)
     
-
-
-
-
-
 
     #_300K.plotPulseLadders(r'')   
     #_300K.plotConvolveLadders("Pulse 300K")

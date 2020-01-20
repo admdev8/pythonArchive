@@ -1,5 +1,4 @@
 #!/usr/bin/python2.6
-
 import math
 import visa
 import shlex

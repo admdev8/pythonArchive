@@ -1,8 +1,5 @@
 #!/usr/bin/env python 
 
-#import libUtils
-#import physics
-
 # For data extraction 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -139,7 +136,6 @@ class pulseLadder(object):
         plt.show()
 
         
-
 # This is simply a list of pulse ladder objects
 # All it can do is store the IV curves in a dict 
 # and plot them if needed. It does not do much
@@ -182,7 +178,6 @@ class pulseList(object):
         plt.show()
 
 
-#########################################################################################################
 if __name__ == "__main__": 
     #########################
     # Single File Operation #

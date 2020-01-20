@@ -29,9 +29,14 @@ squares = ndfit.quotient(size,width)
 GPIB = 1
 pa = hp_4145B(GPIB)
 pa.channelDefinition()
-data = {"voltage":[0]*len(size),"current":[0]*len(size),
-        "resistance":[0]*len(size),"sheet":[0]*len(size),
-        "size":[0]*len(size), "calibration":[0]*len(size)}
+data = {
+    "voltage":[0]*len(size),
+    "current":[0]*len(size),
+    "resistance":[0]*len(size),
+    "sheet":[0]*len(size),
+    "size":[0]*len(size), 
+    "calibration":[0]*len(size)
+}
 
 
 vlow, vhigh, vstep, compliance = -0.5,0.5,5e-2,0.5

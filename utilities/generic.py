@@ -1,3 +1,4 @@
+#!/usr/bin/env python 
 import os 
 import numpy as np
 import scipy.optimize as optimize
@@ -48,6 +49,3 @@ if __name__ == "__main__":
             if checkString(modifier,os.path.join(path, filename)):
                 hallPath = os.path.join(path, filename)
                 print hallPath
-
-
-
