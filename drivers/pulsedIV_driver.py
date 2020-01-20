@@ -49,7 +49,6 @@ class scope_tds7104:
         self.scope.write("TRIG:A:EDGE:SLO RIS")
         self.scope.write("TRIG:A:EDGE:SOU AUX")
 
-
     def setScale(self, channel, scale): 
         self.scope.write("CH%s:SCA %s"%(channel, scale)) 
     
