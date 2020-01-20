@@ -10,10 +10,6 @@ __pycache__/
 *~
 \#*
 
-
-# Development folder
-nonlinear/
-
 # Distribution / packaging
 .Python
 build/
