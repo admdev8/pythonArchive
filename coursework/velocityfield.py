@@ -15,7 +15,6 @@ rc("legend", fontsize=20)
 params = {"legend.fontsize": 16}
 plt.rcParams.update(params)
 
-
 ################################
 # MULTIPROCESS CODE 
 #

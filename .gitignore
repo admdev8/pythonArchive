@@ -10,6 +10,9 @@ __pycache__/
 *~
 \#*
 
+# Organization
+collect/
+
 # Distribution / packaging
 .Python
 build/

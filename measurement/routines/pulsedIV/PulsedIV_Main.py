@@ -1,19 +1,23 @@
 #!/usr/bin/env python 
 import os, sys, inspect
+import cPickle as pickle
+import time
 
+# Numerics and plotting
+import math
+import numpy as np
+import matplotlib.pyplot as plt 
+
+# Import drivers
 os.chdir('../drivers')
 cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 if cmd_folder not in sys.path:
     sys.path.insert(0, cmd_folder)
 
 import pulsedIV_driver as pd
-import matplotlib.pyplot as plt 
-import numpy as np
-import cPickle as pickle
-import time
-import math
 
-class pulsedIV_2ch_meas(object): 
+# Two channel measurment
+class pulsedIV_2ch: 
 
     def __init__(self, sourceGPIB, scopeGPIB, pulseGPIB): 
 
@@ -54,7 +58,8 @@ class pulsedIV_2ch_meas(object):
 
             self.data["%s"%v] = [tch1,vch1,vch2]
 
-class pulsedIV_4ch_meas(object): 
+# Four channel measurment
+class pulsedIV_4ch:
 
     def __init__(self, sourceGPIB, scopeGPIB, pulseGPIB): 
 
@@ -111,7 +116,7 @@ if __name__ == "__main__":
 
         vList = np.linspace(0,9,31)
         # Specify GPIB addresses. 
-        meas = pulsedIV_2ch_meas(6,15,9)
+        meas = pulsedIV_2ch(6,15,9)
         # Specify pulse length (us) and delay (ms)
         meas.setPulses(1,1)
         meas.scope.setScale(1,10)
@@ -176,10 +181,3 @@ if __name__ == "__main__":
         plt.show()
 
         pickle.dump(meas.data,open("../data/test/testdata4ch_4.pkl", "wb"))
-
-
-        
-    
-
-
-

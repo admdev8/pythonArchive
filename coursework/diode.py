@@ -11,7 +11,6 @@ rc('text', usetex=True)
 rc('xtick', labelsize=20) 
 rc('ytick', labelsize=20) 
 
-
 ## Set max recursion depth 
 sys.setrecursionlimit(1500)
 
