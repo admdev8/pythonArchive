@@ -12,6 +12,7 @@ __pycache__/
 
 # Organization
 collect/
+dataparser/
 
 # Distribution / packaging
 .Python
