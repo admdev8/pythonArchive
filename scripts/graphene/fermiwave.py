@@ -1,17 +1,17 @@
 #!/usr/bin/env python 
+#
+# This script contains methods which were used to gnerate the fermi energy 
+# given various models of the density of interface states (Dit) in graphene 
+# FET devices. Several models Dit density are included for computational
+# experimentation 
+#
+# Hysteresis modeling in graphene field effect transistors
+#
+# Journal of Applied Physics 117, 074501 (2015); https://doi.org/10.1063/1.4913209
+#
 import math as m
 import numpy as np
 import matplotlib.pyplot as plt
-
-# This script contains methods which were used to gnerate the fermi energy 
-# given various models of the interface trap density in graphene FET devices 
-# devices. Several models of the interface state density are provided for
-# experimentation 
-#
-# Characterization and physical modeling of MOS capacitors in epitaxial graphene 
-# monolayers and bilayers on 6H-SiC
-#
-# AIP Advances 6, 085010 (2016); https://doi.org/10.1063/1.4961361
 
 #############################
 # CARRIER DENSITY VARIABLES #
@@ -120,6 +120,8 @@ def fermiNormal(Vmax, traps, Vd = 0, npoints = 100):
             check.append(-1.0*rhsm(-1*ef)) 
     return _vg[1:], Ewave[1:], check[1:]
 
+
+
 ###################################
 #      DOUBLE GAUSSIAN  WAVE      #
 ###################################
@@ -161,6 +163,8 @@ def fermiBivariate(Vmax, traps1, traps2, Vd = 0, npoints = 100):
             check.append(-1.0*rhsm(-1*ef)) 
     return _vg[1:], Ewave[1:], check[1:]
 
+
+
 ################################
 #        CAUCHY WAVE           #
 ################################
@@ -201,6 +205,7 @@ def fermiCauchy(Vmax, traps, Vd = 0, npoints = 100):
             check.append(-1.0*rhsm(-1*ef)) 
 
     return _vg[1:], Ewave[1:], check[1:]
+
 
 def fermiNormalCauchy(Vmax, Vd, traps1, traps2, points):
     # Constants

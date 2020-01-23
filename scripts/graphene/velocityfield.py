@@ -1,4 +1,14 @@
 #!/usr/bin/env python 
+#
+# This script contains the functions used for fitting velocity field data extracted 
+# from pulsed-IV measurements in graphene microbrides. Scattering via surface optical 
+# phonons is proposed as a dominant scattering mechaims
+#
+# A temperature dependent measurement of the carrier velocity vs. electric field 
+# characteristic for as-grown and H-intercalated epitaxial graphene on SiC
+#
+# Journal of Applied Physics 113, 193708 (2013); https://doi.org/10.1063/1.4807162
+#
 import sys
 
 # Scipy libs (for fitting)
@@ -10,14 +20,7 @@ import scipy.integrate as integrate
 import ndfit as ndf
 import numpy as np
 
-# This script contains the functions used for fitting velocity field data extracted 
-# from pulsed-IV measurements in graphene microbrides. Scattering via surface optical 
-# phonons is proposed as a dominant scattering mechaims
-#
-# A temperature dependent measurement of the carrier velocity vs. electric field 
-# characteristic for as-grown and H-intercalated epitaxial graphene on SiC
-#
-# Journal of Applied Physics 113, 193708 (2013); https://doi.org/10.1063/1.4807162
+
 
 # This method is used to fit pulsed iv-data curves to tanh model 
 def ivTanhFit(voltage,current,fit_guess,fit_step,convergence,maxdepth): 

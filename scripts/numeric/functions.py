@@ -1,5 +1,4 @@
 #!/usr/bin/env python 
-
 import numpy as np
 from scipy import linspace,polyfit, polyval, poly1d, divide, mean
 

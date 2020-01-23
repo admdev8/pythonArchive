@@ -1,12 +1,15 @@
 #!/usr/bin/env python 
-import numpy as np
-
+#
 # Method to make geometric calculations for semiconductor microbridges
 #
 # A temperature dependent measurement of the carrier velocity vs. electric field 
 # characteristic for as-grown and H-intercalated epitaxial graphene on SiC
 #
 # Journal of Applied Physics 113, 193708 (2013); https://doi.org/10.1063/1.4807162
+#
+import numpy as np
+
+
 
 class microbridge_geometry: 
 
