@@ -21,10 +21,6 @@ rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':20})
 plt.rcParams.update({'legend.fontsize':16,'legend.linewidth':2})
 rc('text', usetex=True)
 
-# Helper method 
-def zigzag(seq): 
-  return seq[::2], seq[1::2]
-
 # Pulse Ladder Class: This contains the core extraction 
 # Algorithm for a two channel pulse ladder
 class pulseLadder(object): 
@@ -139,7 +135,7 @@ class pulseLadder(object):
 # This is simply a list of pulse ladder objects
 # All it can do is store the IV curves in a dict 
 # and plot them if needed. It does not do much
-class pulseList(object): 
+class pulseList: 
 	def __init__(self,_pulseList): 
 		self.pulseList = _pulseList
 	
@@ -179,6 +175,7 @@ class pulseList(object):
 
 
 if __name__ == "__main__": 
+
 	#########################
 	# Single File Operation #
 	#########################
