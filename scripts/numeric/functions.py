@@ -247,3 +247,17 @@ def find_nearest(array, value):
 	idx = (np.abs(array-value)).argmin()
 	
 	return idx, array[idx]
+
+
+# Get exact value in array and index
+def find_exact(self, array, v):
+
+	try:
+		
+		ix = array.index(v)
+		return (array[ix], ix)
+
+	except ValueError:
+	
+		print("Value Not Found")
+		return None

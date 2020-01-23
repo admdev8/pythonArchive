@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python 
 import numpy as np
 
 # Method to make geometric calculations for semiconductor microbridges
