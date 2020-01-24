@@ -12,7 +12,7 @@ rc('xtick', labelsize=20)
 rc('ytick', labelsize=20) 
 
 ## Set max recursion depth 
-sys.setrecursionlimit(1500)
+sys.setrecursionlimit(1500) 
 
 ## Constants of the Problem (global)
 G,l,Is,sx = 0.3333,29.585,1e-11,3

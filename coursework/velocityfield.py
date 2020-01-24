@@ -13,7 +13,7 @@ rc("xtick", labelsize=20)
 rc("ytick", labelsize=20)
 rc("legend", fontsize=20)
 params = {"legend.fontsize": 16}
-plt.rcParams.update(params)
+plt.rcParams.update(params) 
 
 ################################
 # MULTIPROCESS CODE 
