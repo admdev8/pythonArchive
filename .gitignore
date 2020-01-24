@@ -11,8 +11,8 @@ __pycache__/
 \#*
 
 # Organization
-collect/
-dataparser/
+# collect/
+# dataparser/
 
 # Distribution / packaging
 .Python
