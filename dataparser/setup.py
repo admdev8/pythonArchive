@@ -38,7 +38,7 @@ except ImportError:
 	print('Please install or upgrade setuptools or pip to continue')
 	sys.exit(1)
 
-setup(name='minispice',
+setup(name='dataparser',
 		description='Data parser utilities (archived)',
 		version='0.0',
 		author='mesoic',
